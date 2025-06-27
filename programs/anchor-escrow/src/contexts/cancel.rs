@@ -6,11 +6,15 @@ use anchor_spl::{
     },
 };
 
+use crate::states::Escrow;
+
 //Just have to refund the vault token into mint_a and close  the vault account
 #[derive(Accounts)]
 struct Cancel<'info>{
     #[account(mut)]
     pub initializer: Signer<'info>,
+
+    pub mint_a :Account<'info, Mint>,
 
     #[account(mut, associated_token::mint=mint_a, associated_token::authority=initializer)]
     pub initializer_ata_a: Box<Account<'info, TokenAccount>>,

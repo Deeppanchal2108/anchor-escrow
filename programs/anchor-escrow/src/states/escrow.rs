@@ -1,7 +1,7 @@
 use anchor_lang::prelude::*;
 
 #[account]
-struct Escrow{
+pub struct Escrow{
     pub seed :u64,
     pub bump :u8,
     pub initializer :PubKey,
