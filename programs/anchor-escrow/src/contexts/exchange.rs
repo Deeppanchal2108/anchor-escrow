@@ -107,7 +107,7 @@ impl<'info> Exchange<'info>{
             authority: self.escrow.to_account_info(),
 
         };
-       let context=  CpiContext::new( self.token_program.to_account_info(), cpi_account).with_signer(signer_seeds);
+       let context=  CpiContext::new( self.token_program.to_account_info(), cpi_account).with_signer(&signer_seeds);
        transfer_checked(context, self.escrow.initialize_amount, self.mint_a.decimals)?;
 
 
@@ -117,7 +117,7 @@ impl<'info> Exchange<'info>{
                 destination: self.initializer.to_account_info(),
                 authority: self.escrow.to_account_info(),
             }
-        ).with_signer(signer_seeds);
+        ).with_signer(&signer_seeds);
 
         close_account(close_ctx)?;
 
